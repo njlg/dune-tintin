@@ -1,0 +1,25 @@
+#config speedwalk on
+
+#nop
+#nop Have to re-map these because speedwalk considers 'ne' as 'north;east'
+#nop
+#alias {ne} {northeast}
+#alias {nw} {northwest}
+#alias {se} {southeast}
+#alias {sw} {southwest}
+
+#nop
+#nop Pull in your character
+#nop
+#read characters/example.tin
+
+#nop
+#nop This will be used by other scripts
+#nop
+set prompt [$HPHP=%h$OFF $CPCP=%c$OFF $EPEP=%E$OFF]%s;
+
+#nop
+#nop These are preferences
+#nop
+#split
+set channel_color say:bold yellow, newbie:bold magenta, chat:bold magenta, eye:bold magenta, fremen:bold magenta;

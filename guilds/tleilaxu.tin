@@ -1,0 +1,102 @@
+#nop
+#nop Tleilaxu / Game Settings
+#nop
+set tprompt on;
+
+#variable {attacking} {0};
+#variable {exp} {0};
+#variable {commandPoints} {0};
+#variable {autoAttack} {1};
+
+#highlight {You attack %1} {bold red}
+#highlight {[%+ at %d experience]} {bold green}
+
+#list {mobs} {create}            {Eye in a jar} {Hideous Ghola};
+#list {mobsShortnames} {create}  {eye}          {ghola};
+
+#action {^Corpse of} {
+  #if { $attacking == 0 } {
+    #untick {takeall};
+    process corpse;
+    #ticker {takeall} { @takeall{} } {2};
+  };
+};
+
+#list {numberNames} {create} {One;Two;Three;Four;Five;Six;Seven;}
+#action {^%1 times 'Corpse of} {
+  #if { $attacking == 0 } {
+    #untick {takeall};
+    #list {numberNames} {find} {%1} {index};
+    #$index {process corpse};
+    #ticker {takeall} { @takeall{} } {2};
+  };
+};
+
+#action {^%1 died.} {
+  #variable {attacking} {0};
+  glance;
+};
+
+#action { CP: %d/%d } {
+  #variable {commandPoints} {%1};
+}
+
+#action { CP=%d } {
+  #variable {commandPoints} {%1};
+}
+
+#action {%1} {
+  #if { $autoAttack == 1 } {
+    #if { $attacking == 0 } {
+      #foreach {*mobs[%*]} {index} {
+        #regexp {%1} {%i$mobs[$index]} {
+          #variable {attacking} {1};
+          #if { $commandPoints > 24 } {
+            #send {backstab $mobsShortnames[$index]};
+          };
+          #else {
+            #send {kill $mobsShortnames[$index]};
+          };
+        };
+      };
+    };
+  };
+} {10};
+
+#function {takeall} {
+  #untick {takeall};
+  take all;
+  look;
+};
+
+#ticker {looker} {
+  #if { $attacking == 0 } {
+    look;
+  };
+} {30};
+
+#variable {doLoop} {0};
+#variable {loopPath} {n;ne;e;se;s;sw;w;nw;};
+#path {load} {$loopPath};
+
+#function startLoop {
+  #variable {doLoop} {1};
+  #path {load} {$loopPath};
+};
+
+#function stopLoop {
+  #variable {doLoop} {0};
+  #untick {looper};
+};
+
+#ticker {looper} {
+  #if { $doLoop == 1 } {
+    #if { $attacking == 0 } {
+      #path walk forward;
+    };
+  };
+} {5};
+
+#event {END OF PATH} {
+  #path {load} {$loopPath};
+};

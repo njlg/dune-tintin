@@ -1,0 +1,3 @@
+#session {dune} dunemud.com 6789; <Name>; <Password>;
+
+#read guilds/tleilaxu.tin
