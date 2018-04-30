@@ -29,7 +29,7 @@ If you have WinTin++ installed (e.g. Windows):
 
 ## Folder Layout
 
-* characters &mdahs; All character specific configurations
-* guilds &mdahs; All guild specific configurations
-* maps &mdahs; Maps for all locations. (coming soon)
-* paths &mdahs; Paths for looping in certain areas. (coming soon)
+* characters &mdash; All character specific configurations
+* guilds &mdash; All guild specific configurations
+* maps &mdash; Maps for all locations. (coming soon)
+* paths &mdash; Paths for looping in certain areas. (coming soon)
