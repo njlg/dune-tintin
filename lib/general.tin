@@ -1,0 +1,125 @@
+#variable {attacking} {0};
+#variable {autoAttack} {1};
+#variable {commandPoints} {0};
+#variable {exp} {0};
+#variable {healthPoints} {0};
+#variable {healthPercent} {0};
+
+#config speedwalk on;
+
+#nop
+#nop Have to re-map these because speedwalk considers 'ne' as 'north;east'
+#nop
+
+#alias {ne} {northeast};
+#alias {nw} {northwest};
+#alias {se} {southeast};
+#alias {sw} {southwest};
+
+#nop
+#nop This will be used by other scripts
+#nop
+
+set prompt [$HPHP=%h$OFF $CPCP=%c$OFF $EPEP=%E$OFF]%s;
+
+#nop
+#nop These are preferences
+#nop
+
+#split;
+set channel_color say:bold yellow, newbie:bold magenta, chat:bold magenta, eye:bold magenta, fremen:bold magenta;
+set tell_from_colour bold yellow;
+tell_to_colour set bold yellow;
+
+#highlight {You attack %1} {bold red};
+
+#nop
+#nop Other
+#nop
+
+#action { HP: %d/%d CP: %d/%d } {
+  #variable {healthPoints} {%1};
+  #math {healthPercent} {(%1 / %2) * 100};
+  #variable {commandPoints} {%3};
+}
+
+#action {HP=%d CP=%d EP=%d} {
+  #variable {healthPoints} {%1};
+  #variable {commandPoints} {%2};
+
+  #if { %3 > $exp } {
+    #math {expdiff} {%3 - $exp};
+    #format {message} {%cYou just gained $expdiff experience.} {light green};
+    #echo {$message};
+    #variable {exp} {%3};
+  }
+  #else {
+    #variable {exp} {%3};
+  }
+}
+
+#action {^Corpse of} {
+  #if { $attacking == 0 } {
+    #untick {takeall};
+    @handleCorpse{};
+    #ticker {takeall} { @takeall{} } {2};
+  }
+}
+
+#list {numberNames} {create} {One;Two;Three;Four;Five;Six;Seven;}
+
+#action {^%1 times 'Corpse of} {
+  #if { $attacking == 0 } {
+    #untick {takeall};
+    #list {numberNames} {find} {%1} {index};
+    #$index {
+      @handleCorpse{};
+    }
+    #ticker {takeall} { @takeall{} } {2};
+  }
+}
+
+#action {^%1 died.} {
+  #variable {attacking} {0};
+  glance;
+}
+
+#action {^%1 flees!} {
+  #variable {attacking} {0};
+  glance;
+}
+
+#action {%1} {
+  #if { $autoAttack == 1 } {
+    #if { $attacking == 0 } {
+      #foreach {*mobs[%*]} {index} {
+        #regexp {%1} {%i$mobs[$index]} {
+          #variable {attacking} {1};
+          #variable {mob} {$mobsShortnames[$index]};
+          @attack{ $mob };
+        }
+      }
+    }
+  }
+} {10}
+
+#ticker {looker} {
+  #if { $attacking == 0 } {
+    look;
+  }
+} {30}
+
+#nop We should occationally switch attacking off
+#nop in case it someone attacked us and left
+
+#ticker {unattack} {
+  #if { $attacking == 1 } {
+    #variable {attacking} {0};
+  }
+} {300}
+
+#function {takeall} {
+  #untick {takeall};
+  take all;
+  look;
+}

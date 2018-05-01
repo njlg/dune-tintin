@@ -1,0 +1,19 @@
+#list {mobs} {create}
+    {Desert Bat}
+    {Devil}
+    {Eye in a jar}
+    {Harkonnen functionary}
+    {Harkonnen worker}
+    {Hideous Ghola}
+    {Mouse}
+    {Snake};
+
+#list {mobsShortnames} {create}
+    {bat}
+    {devil}
+    {eye}
+    {functionary}
+    {worker}
+    {ghola}
+    {mouse}
+    {snake};

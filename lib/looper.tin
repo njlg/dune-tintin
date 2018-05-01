@@ -1,0 +1,29 @@
+#variable {doLoop} {0};
+#variable {loopPath} {};
+#path {load} {$loopPath};
+
+#function startLoop {
+  #variable {doLoop} {1};
+  #path {load} {$loopPath};
+  @continueLoop{};
+}
+
+#function stopLoop {
+  #variable {doLoop} {0};
+  #untick {looper};
+}
+
+#function continueLoop {
+  #variable {doLoop} {1};
+  #ticker {looper} {
+    #if { $doLoop == 1 } {
+      #if { $attacking == 0 } {
+        #path walk forward;
+      }
+    }
+  } {5}
+}
+
+#event {END OF PATH} {
+  @startLoop{};
+}

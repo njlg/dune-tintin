@@ -1,0 +1,30 @@
+#nop
+#nop Fremen Settings
+#nop
+
+set fprompt on;
+
+#alias dw drinkwater;
+
+#action { ADR: %d/%d %+ Mode: Normal } {
+  #if { %1 == %2 } {
+    setmode rage;
+  }
+};
+
+#action {~\e[37m\e[1m[\e[32mWW\e[37m]\e[0m} {
+  weirding;
+} {4}
+
+#function {handleCorpse} {
+  #untick {takeall};
+  degland corpse;
+  distill corpse;
+  #ticker {takeall} { @takeall{} } {2};
+}
+
+#function {attack} {
+  tmode tense;
+  #send { kill %1 };
+}
+
