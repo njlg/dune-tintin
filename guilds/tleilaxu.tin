@@ -4,22 +4,30 @@
 
 set tprompt on
 
-#highlight {[%+ at %d experience]} {bold green}
+#var {useDarts} {1};
+
+#highlight {[%+ at %d experience]} {bold green};
 
 #function {handleCorpse} {
   #untick {takeall};
-  process corpse;
+  #nop process corpse;
+  transfuse corpse;
   #ticker {takeall} { @takeall{} } {2};
 }
 
 #function {attack} {
-  #echo {attacking %1};
   #if { $commandPoints > 24 } {
-    #echo {backstab %1};
     #send {backstab %1};
   };
   #else {
-    #echo {killing %1};
     #send {kill %1};
   }
 }
+
+#ticker {dartMob} {
+  #if { $attacking == 1 } {
+    #if { $useDarts == 1 } {
+      #send {dart $mob}
+    }
+  }
+} {2}

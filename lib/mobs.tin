@@ -6,6 +6,9 @@
     {Harkonnen worker}
     {Hideous Ghola}
     {Mouse}
+    {Newbie ninja}
+    {Newbie ninja master}
+    {Newbie ninja death commando}
     {Snake};
 
 #list {mobsShortnames} {create}
@@ -16,4 +19,7 @@
     {worker}
     {ghola}
     {mouse}
+    {ninja}
+    {master}
+    {commando}
     {snake};

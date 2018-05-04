@@ -10,3 +10,4 @@
 #nop
 
 #variable {noobWest} {n;ne;e;se;s;sw;w;nw;};
+#variable {noobDown} {next;next;next;next;next;trapdoor;back;exit;e;drink basin;d;d;enter;};

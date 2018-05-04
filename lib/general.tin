@@ -29,7 +29,7 @@ set prompt [$HPHP=%h$OFF $CPCP=%c$OFF $EPEP=%E$OFF]%s;
 #split;
 set channel_color say:bold yellow, newbie:bold magenta, chat:bold magenta, eye:bold magenta, fremen:bold magenta;
 set tell_from_colour bold yellow;
-tell_to_colour set bold yellow;
+set tell_to_colour set bold yellow;
 
 #highlight {You attack %1} {bold red};
 
@@ -87,6 +87,14 @@ tell_to_colour set bold yellow;
 #action {^%1 flees!} {
   #variable {attacking} {0};
   glance;
+}
+
+#action {^%d solaris} {
+  get all solaris;
+}
+
+#action {^%1 times '%d solaris} {
+  get all solaris;
 }
 
 #action {%1} {
