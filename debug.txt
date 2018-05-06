@@ -1,0 +1,7 @@
+Some tintin++ commands to help debug scripts
+
+#alias {%*} {#showme {<fab>MSG:INPUT %0}; }
+#unalias {%*}
+
+#event {SEND OUTPUT} {#echo {%s} {<fab>##SENT: %0}}
+#unevent {SEND OUTPUT}

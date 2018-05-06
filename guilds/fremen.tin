@@ -2,29 +2,31 @@
 #nop Fremen Settings
 #nop
 
-set fprompt on;
+set fprompt on
 
-#alias dw drinkwater;
+#alias dw drinkwater
 
 #action { ADR: %d/%d %+ Mode: Normal } {
   #if { %1 == %2 } {
-    setmode rage;
+    setmode rage
   }
 };
 
 #action {~\e[37m\e[1m[\e[32mWW\e[37m]\e[0m} {
-  weirding;
+  weirding
 } {4}
 
-#function {handleCorpse} {
+#alias {handleCorpse} {
   #untick {takeall};
   degland corpse;
   distill corpse;
-  #ticker {takeall} { @takeall{} } {2};
+  #ticker {takeall} { @takeall{} } {2}
 }
 
-#function {attack} {
+#alias {attack} {
   tmode tense;
-  #send { kill %1 };
+  tmode alpha;
+  poison crysknife;
+  #send { kill %1 }
 }
 

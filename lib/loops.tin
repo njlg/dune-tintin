@@ -2,12 +2,18 @@
 #nop Arrakis
 #nop
 
-#variable {HarkonnenWarehouseWest} {w;n;n;n;n;n;n;e;s;s;s;s;s;s;};
-#variable {AbandonedSietch} {w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;};
+#variable {loop.arrakis.HarkonnenWarehouseWest} {w;n;n;n;n;n;n;e;e;s;s;s;s;s;s;w;}
+#variable {loop.arrakis.AbandonedSietch} {w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;w;n;s;s;n;}
 
 #nop
 #nop Tleilaxu
 #nop
 
-#variable {noobWest} {n;ne;e;se;s;sw;w;nw;};
-#variable {noobDown} {next;next;next;next;next;trapdoor;back;exit;e;drink basin;d;d;enter;};
+#variable {loop.tleilaxu.noobWest} {n;ne;e;se;s;sw;w;nw;}
+#variable {loop.tleilaxu.noobDown} {next;next;next;next;next;trapdoor;back;exit;e;drink basin;d;d;enter;}
+
+#nop
+#nop Giedi Prime
+#nop
+
+#variable {loop.gp.trainingArea} {n;ne;e;se;s;sw;w;nw;}

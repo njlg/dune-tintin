@@ -2,28 +2,28 @@
 #variable {loopPath} {};
 #path {load} {$loopPath};
 
-#function startLoop {
+#alias startLoop {
   #variable {doLoop} {1};
   #path {load} {$loopPath};
-  @continueLoop{};
+  continueLoop
 }
 
-#function stopLoop {
+#alias stopLoop {
   #variable {doLoop} {0};
-  #untick {looper};
+  #untick {looper}
 }
 
-#function continueLoop {
+#alias continueLoop {
   #variable {doLoop} {1};
   #ticker {looper} {
     #if { $doLoop == 1 } {
       #if { $attacking == 0 } {
-        #path walk forward;
+        #path walk forward
       }
     }
   } {5}
 }
 
 #event {END OF PATH} {
-  @startLoop{};
+  startLoop
 }
