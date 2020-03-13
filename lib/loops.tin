@@ -17,3 +17,4 @@
 #nop
 
 #variable {loop.gp.trainingArea} {n;ne;e;se;s;sw;w;nw;}
+#variable {loop.gp.soldierBarracks} {w;n;s;s;n;w;n;s;s;n;w;e;e;e;e;}

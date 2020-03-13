@@ -1,3 +1,7 @@
-#session {dune} dunemud.com 6789; <Name>; <Password>;
+#session {dune} dunemud.net 6789; <Name>; <Password>;
 
-#read guilds/tleilaxu.tin
+#nop Uncomment one of these guilds:
+#nop read dune-tintin/guilds/tleilaxu.tin
+#nop read dune-tintin/guilds/fement.tin
+
+#variable {loopPath} {};
